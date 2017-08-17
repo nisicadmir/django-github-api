@@ -1,0 +1,13 @@
+In this file I will explain how to run the application. Requirements for this app are: python2.7, virtualenv, pip.
+
+
+Type command for starting the app: "python manage.py runserver". The server will start on port 8000. 
+Visit "localhost:8000/q?search_term=django-angular4". The app will search repositories by name "django-angular4". There is an input field for searching. If you type "angular4" the app will search repositories for the term "angular", will slice to 5 repositories and will get the latest commit for repositories.
+
+Important files: There are 4 important files in the app.
+	1. Script for searching repos is in: backend/github/getRepos.py
+	2. Script for searching commits is in: backend/github/getCommits.py
+	3. View for logic is in: backend/github/views.py
+	4. Finally the template is in: backend/github/templates/index.html
+
+

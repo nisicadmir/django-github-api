@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <title>Get repo from Github.com</title>
+</head>
+<body>
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-6 col-push-3">
+        <form action="{% url 'index' %}" method="GET">
+          <input type="text" name="search_term" class="form-control">
+          <input type="submit" value="Search repos">
+        </form>
+        <p>Search term is: {{search_term}}</p>
+      </div>
+      <br>
+      <br>
+      <div class="col-12">
+        {% for repo, commit in data %}
+          <h1>{{ forloop.counter }}. {{repo.name}}</h1>
+          <h2>Created: {{repo.created_at|slice:"0:10"}} {{repo.created_at|slice:"11:19"}}</h2>
+          <div><a href="{{repo.owner.html_url}}"><img src="{{repo.owner.avatar_url}}" alt="" width="80px" height="80px"></a> {{repo.owner.login}} </div>
+          <h2>Last commit</h2>
+          <p><span>{{commit.commit.tree.sha}}</span> - <span>{{commit.commit.message}}</span> - <span>{{commit.commit.author.name}}</span></p>
+          <br>
+          <hr>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
